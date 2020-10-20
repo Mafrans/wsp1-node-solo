@@ -12,15 +12,28 @@ router.get('/:id', async function (req, res, next) {
         );
         
         const links = await query(
-            'SELECT * FROM links WHERE story_id = ?',
+            'SELECT * FROM links WHERE source_id = ?',
             req.params.id
         );
+
+        let leftLink = "Slut", rightLink = "Slut";
+        if(links.length > 0) {
+            leftLink = links[0];
+            rightLink = links[0];
+
+            if(links.length === 2) {
+                rightLink = links[1];
+            }
+        }
     
         res.render('story', {
             title: 'Story',
             id: req.params.id,
             story: story,
-            links: links,
+            links: {
+                left: leftLink,
+                right: rightLink
+            },
         });
     }
     catch(e) {
