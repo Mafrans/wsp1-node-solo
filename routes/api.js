@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { query } = require('../models/db');
 
-router.get('/:id', async function (req, res, next) {
+router.get('/story/:id', async function (req, res, next) {
     console.log(req.params);
 
     try {
@@ -26,10 +26,9 @@ router.get('/:id', async function (req, res, next) {
             }
         }
     
-        res.render('story', {
-            title: 'Story',
+        res.json({
             id: req.params.id,
-            story: story,
+            story: story[0],
             links: {
                 left: leftLink,
                 right: rightLink
