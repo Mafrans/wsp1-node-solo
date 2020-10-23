@@ -34,10 +34,10 @@
     const reload = async () => {
         const data = await fetch(location.origin + '/api/story/' + storyId).then(res => res.json());
 
-        body.textContent = data.story.body;
-        leftLink.textContent = data.links.left.description;
+        body.innerHTML = applyTextEffect(data.story.body, data.story.text_effect);
+        leftLink.innerHTML = applyTextEffect(data.links.left.description, data.links.left.text_effect);
         leftLink.setAttribute('data-link', data.links.left.target_id);
-        rightLink.textContent = data.links.right.description;
+        rightLink.innerHTML = applyTextEffect(data.links.right.description, data.links.right.text_effect);
         rightLink.setAttribute('data-link', data.links.right.target_id);
 
         console.log(data);
@@ -46,6 +46,35 @@
     const wait = async (millis) => {
         return new Promise(res => setTimeout(res, millis));
     }
+
+    const applyTextEffect = (text, effectId) => {
+        const ITALIC = 1;
+        const WIGGLY = 2;
+
+        switch(effectId) {
+            case ITALIC:
+                return applyItalicText(text);
+            case WIGGLY:
+                return applyWigglyText(text);
+        }
+        return text;
+    }
+
+    const applyItalicText = (text) => {
+        return `<i>${text}</i>`;
+    } 
+
+    const applyWigglyText = (text) => {
+        let out = '';
+        text.split('').forEach((char, i) => {
+            if(char == " ") {
+                out += `<span style="padding-left: .5rem"></span>`;
+                return;
+            }
+            out += `<span class="wiggly" style="animation-delay: -${i/10}s">${char}</span>`;
+        })
+        return out;
+    } 
 
     reload();
 
