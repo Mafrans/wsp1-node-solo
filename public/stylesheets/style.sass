@@ -22,3 +22,11 @@ a
             transform: translateY(2px)  
         100%
             transform: translateY(-2px)
+
+
+// ICONS
+$sizes: 18, 24, 36, 48
+.material-icons
+    @each $size in $sizes 
+        &.md-#{$size}
+            font-size: #{$size}px;

@@ -9,6 +9,7 @@ const sassMiddleware = require('node-sass-middleware');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
+const storyRouter = require('./routes/story');
 const apiRouter = require('./routes/api');
 const combatRouter = require('./routes/combat');
 
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
-app.use('/combat', combatRouter);
+app.use('/story', storyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
