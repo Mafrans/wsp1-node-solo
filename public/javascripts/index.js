@@ -65,14 +65,15 @@
     } 
 
     const applyWigglyText = (text) => {
-        let out = '';
+        let out = '<div class="wiggly-word">';
         text.split('').forEach((char, i) => {
             if(char == " ") {
-                out += `<span style="padding-left: .5rem"></span>`;
+                out += `</div><div class="wiggly-word">`;
                 return;
             }
             out += `<span class="wiggly" style="animation-delay: -${i/10}s">${char}</span>`;
         })
+        out += '</div>';
         return out;
     } 
 

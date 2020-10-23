@@ -6,11 +6,15 @@ a
 
 .wiggly
     display: inline-block
-    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1)
     animation-name: wiggle
     animation-duration: 1s
     animation-iteration-count: infinite
     
+    &-word 
+        display: inline-block
+        padding-left: 0.75rem;
+
     @keyframes wiggle
         0%
             transform: translateY(-2px)
