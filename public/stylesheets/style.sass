@@ -1,6 +1,20 @@
 body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif
 
 a
-  color: #00B7FF
+    color: #00B7FF
+
+.wiggly
+    display: inline-block
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    animation-name: wiggle
+    animation-duration: 1s
+    animation-iteration-count: infinite
+    
+    @keyframes wiggle
+        0%
+            transform: translateY(-2px)
+        50%
+            transform: translateY(2px)  
+        100%
+            transform: translateY(-2px)

@@ -1,12 +1,15 @@
 extends layout
 
 block content
-  .container
-    p.body
-    
-  p.link.left
-  p.link.right
+    include navbar
+    .uk-container.uk-text-center
+        hr.uk-divider-icon.uk-padding.uk-margin-remove
+        h1.body
+        p.uk-margin-large-top
+            a.link.left.uk-text-large
+        p
+            a.link.right.uk-text-large
 
-  .overlay
+    .overlay
   
-  script(src="/javascripts/index.js")
+    script(src="/javascripts/index.js")
