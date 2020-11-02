@@ -1,7 +1,6 @@
 (() => {
     let storyId = 1;
     const body = document.querySelector('.body');
-    const overlay = document.querySelector('.overlay');
     const leftLink = document.querySelector('.link.left');
     const rightLink = document.querySelector('.link.right');
 
@@ -25,10 +24,7 @@
 
     const next = async (id) => {
         storyId = id;
-        overlay.classList.add('transitioning');
-        await wait(500);
         reload();
-        overlay.classList.remove('transitioning');
     }
     
     const reload = async () => {
@@ -40,7 +36,7 @@
         rightLink.innerHTML = applyTextEffect(data.links.right.description, data.links.right.text_effect);
         rightLink.setAttribute('data-link', data.links.right.target_id);
 
-        console.log(data);
+        location.hash = '#' + storyId;
     }
 
     const wait = async (millis) => {
@@ -77,6 +73,9 @@
         return out;
     } 
 
-    reload();
+    if(location.hash.startsWith("#")) {
+        storyId = parseInt(location.hash.substring(1));
+    }
+    next(storyId);
 
 })();
